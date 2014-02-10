@@ -213,4 +213,20 @@ client_nodes.each do |client|
       }
     )
   end
+
+  gdash_dashboard_component client_fqdn do
+    dashboard_name 'network'
+    dashboard_category summary_category_name
+    title client_fqdn
+    fields(
+      :rx => {
+        :data => "averageSeries(#{client_name}.interface.if_octets.eth0.rx)",
+        :alias => 'rx'
+      },
+      :tx => {
+        :data => "averageSeries(#{client_name}.interface.if_octets.eth0.tx)",
+        :alias => 'tx'
+      }
+    )
+  end
 end
